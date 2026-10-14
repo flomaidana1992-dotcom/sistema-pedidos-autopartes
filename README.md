@@ -9,5 +9,5 @@ Automatización con Make + Airtable + OpenAI + Gmail. Un pedido nuevo se valida 
 - Capturas de Make: evidencias del flujo.
 
 ## Enlaces
-- Dashboard de control (Airtable, solo lectura): PEGAR AQUÍ EL LINK PÚBLICO DE AIRTABLE
-- Video demo (2 min): PEGAR AQUÍ EL LINK DEL VIDEO EN DRIVE
+- Dashboard de control (Airtable, solo lectura):(https://airtable.com/apphIbFEW7U88c6LP/shrXOkyRMylifX168)
+- Video demo (2 min): https://drive.google.com/file/d/1pko-Lvne8hr_bjQW1mJHFbvgzzTcNZoh/view?usp=sharing
