@@ -1,0 +1,671 @@
+{
+    "name": "Envió tras aprobación",
+    "flow": [
+        {
+            "id": 1,
+            "module": "airtable:ActionSearchRecords",
+            "version": 3,
+            "parameters": {
+                "__IMTCONN__": 11116092
+            },
+            "mapper": {
+                "base": "apphIbFEW7U88c6LP",
+                "table": "tblYqfueWWFQYknpn",
+                "formula": "{Estado} = \"Aprobado por Humano\"",
+                "maxRecords": "10",
+                "useColumnId": false,
+                "formulaField": "formula"
+            },
+            "metadata": {
+                "designer": {
+                    "x": 0,
+                    "y": 0
+                },
+                "setupValidation": {
+                    "result": {
+                        "valid": true,
+                        "fields": []
+                    },
+                    "version": 1,
+                    "configuration": "f07d9f398584a4f7"
+                },
+                "restore": {
+                    "expect": {
+                        "base": {
+                            "mode": "chose",
+                            "label": "Autopartes - Gestión de Pedidos"
+                        },
+                        "sort": {
+                            "mode": "chose"
+                        },
+                        "view": {
+                            "mode": "chose",
+                            "label": "Empty"
+                        },
+                        "table": {
+                            "mode": "chose",
+                            "label": "Pedidos"
+                        },
+                        "fields": {
+                            "mode": "chose"
+                        },
+                        "useColumnId": {
+                            "mode": "chose"
+                        },
+                        "formulaField": {
+                            "mode": "chose",
+                            "label": "Airtable formula"
+                        }
+                    },
+                    "parameters": {
+                        "__IMTCONN__": {
+                            "data": {
+                                "scoped": "true",
+                                "connection": "airtable3"
+                            },
+                            "label": "Florencia's Airtable OAuth connection (User ID: usrk6RB0Xy17dwKHh)"
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "__IMTCONN__",
+                        "type": "account:airtable3,airtable2",
+                        "label": "Connection",
+                        "required": true
+                    }
+                ],
+                "expect": [
+                    {
+                        "name": "base",
+                        "type": "select",
+                        "label": "Base",
+                        "required": true
+                    },
+                    {
+                        "name": "useColumnId",
+                        "type": "boolean",
+                        "label": "Use column ID",
+                        "required": true
+                    },
+                    {
+                        "name": "table",
+                        "type": "select",
+                        "label": "Table",
+                        "required": true
+                    },
+                    {
+                        "name": "maxRecords",
+                        "type": "integer",
+                        "label": "Limit"
+                    },
+                    {
+                        "name": "sort",
+                        "spec": [
+                            {
+                                "name": "field",
+                                "type": "select",
+                                "label": "Field",
+                                "dynamic": true,
+                                "options": []
+                            },
+                            {
+                                "name": "direction",
+                                "type": "select",
+                                "label": "Direction",
+                                "options": [
+                                    {
+                                        "label": "Descending",
+                                        "value": "desc"
+                                    },
+                                    {
+                                        "label": "Ascending",
+                                        "value": "asc"
+                                    }
+                                ]
+                            }
+                        ],
+                        "type": "array",
+                        "label": "Sort"
+                    },
+                    {
+                        "name": "view",
+                        "type": "select",
+                        "label": "View"
+                    },
+                    {
+                        "name": "fields",
+                        "type": "select",
+                        "label": "Output fields",
+                        "multiple": true
+                    },
+                    {
+                        "name": "formulaField",
+                        "type": "select",
+                        "label": "Filter type",
+                        "validate": {
+                            "enum": [
+                                "formula",
+                                "simpleFilter"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "formula",
+                        "type": "text",
+                        "label": "Formula"
+                    }
+                ],
+                "interface": [
+                    {
+                        "name": "__IMTLENGTH__",
+                        "type": "uinteger",
+                        "label": "Total number of bundles"
+                    },
+                    {
+                        "name": "__IMTINDEX__",
+                        "type": "uinteger",
+                        "label": "Bundle order position"
+                    },
+                    {
+                        "name": "id",
+                        "type": "text",
+                        "label": "ID"
+                    },
+                    {
+                        "name": "createdTime",
+                        "type": "date",
+                        "label": "Created time"
+                    },
+                    {
+                        "name": "ID pedido",
+                        "type": "text",
+                        "label": "ID pedido"
+                    },
+                    {
+                        "name": "Cliente",
+                        "spec": {
+                            "type": "text",
+                            "label": "Record ID"
+                        },
+                        "type": "array",
+                        "label": "Cliente"
+                    },
+                    {
+                        "name": "Nombre del cliente (from Cliente)",
+                        "type": "array",
+                        "label": "Nombre del cliente (from Cliente)"
+                    },
+                    {
+                        "name": "Email (from Cliente)",
+                        "type": "array",
+                        "label": "Email (from Cliente)"
+                    },
+                    {
+                        "name": "Contenido del pedido",
+                        "type": "text",
+                        "label": "Contenido del pedido",
+                        "multiline": true
+                    },
+                    {
+                        "name": "Estado",
+                        "type": "text",
+                        "label": "Estado"
+                    },
+                    {
+                        "name": "Resultado IA",
+                        "type": "text",
+                        "label": "Resultado IA",
+                        "multiline": true
+                    },
+                    {
+                        "name": "Registro de error",
+                        "type": "text",
+                        "label": "Registro de error",
+                        "multiline": true
+                    },
+                    {
+                        "name": "Fecha de ingreso",
+                        "type": "date",
+                        "label": "Fecha de ingreso"
+                    },
+                    {
+                        "name": "Prioridad",
+                        "type": "text",
+                        "label": "Prioridad"
+                    }
+                ]
+            }
+        },
+        {
+            "id": 2,
+            "module": "google-email:sendAnEmail",
+            "version": 4,
+            "parameters": {
+                "__IMTCONN__": 10860510
+            },
+            "mapper": {
+                "to": "{{1.`Email (from Cliente)`}}",
+                "content": "Hola, tu pedido fue aprobado.<br><br>{{1.`Resultado IA`}}",
+                "subject": "Tu pedido fue aprobado",
+                "bodyType": "rawHtml"
+            },
+            "metadata": {
+                "designer": {
+                    "x": 300,
+                    "y": 0
+                },
+                "setupValidation": {
+                    "result": {
+                        "valid": true,
+                        "fields": []
+                    },
+                    "version": 1,
+                    "configuration": "425844f35b7032e3"
+                },
+                "restore": {
+                    "expect": {
+                        "cc": {
+                            "mode": "chose"
+                        },
+                        "to": {
+                            "mode": "edit"
+                        },
+                        "bcc": {
+                            "mode": "chose"
+                        },
+                        "from": {
+                            "mode": "chose"
+                        },
+                        "bodyType": {
+                            "label": "Raw HTML"
+                        },
+                        "attachments": {
+                            "mode": "chose"
+                        },
+                        "emailHeaders": {
+                            "mode": "chose"
+                        }
+                    },
+                    "parameters": {
+                        "__IMTCONN__": {
+                            "data": {
+                                "scoped": "true",
+                                "connection": "google-email"
+                            },
+                            "label": "Florencia's Gmail connection (flomaidana1992@gmail.com)"
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "__IMTCONN__",
+                        "type": "account:google-email",
+                        "label": "Connection",
+                        "required": true
+                    }
+                ],
+                "expect": [
+                    {
+                        "name": "to",
+                        "spec": {
+                            "name": "value",
+                            "type": "email",
+                            "label": "Recipient email address",
+                            "required": true,
+                            "validate": true
+                        },
+                        "type": "array",
+                        "label": "To",
+                        "required": true
+                    },
+                    {
+                        "name": "subject",
+                        "type": "text",
+                        "label": "Subject"
+                    },
+                    {
+                        "name": "bodyType",
+                        "type": "select",
+                        "label": "Body type",
+                        "required": true,
+                        "validate": {
+                            "enum": [
+                                "rawHtml",
+                                "collection"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "attachments",
+                        "spec": {
+                            "name": "value",
+                            "spec": [
+                                {
+                                    "name": "filename",
+                                    "type": "filename",
+                                    "label": "File name",
+                                    "required": true,
+                                    "semantic": "file:name"
+                                },
+                                {
+                                    "name": "data",
+                                    "type": "buffer",
+                                    "label": "Data",
+                                    "required": true,
+                                    "semantic": "file:data"
+                                }
+                            ],
+                            "type": "collection",
+                            "label": "Attachment"
+                        },
+                        "type": "array",
+                        "label": "Attachments"
+                    },
+                    {
+                        "name": "from",
+                        "type": "select",
+                        "label": "From"
+                    },
+                    {
+                        "name": "cc",
+                        "spec": {
+                            "name": "value",
+                            "type": "email",
+                            "label": "Recipient email address"
+                        },
+                        "type": "array",
+                        "label": "CC recipients"
+                    },
+                    {
+                        "name": "bcc",
+                        "spec": {
+                            "name": "value",
+                            "type": "email",
+                            "label": "Recipient email address"
+                        },
+                        "type": "array",
+                        "label": "BCC recipients"
+                    },
+                    {
+                        "name": "emailHeaders",
+                        "spec": {
+                            "name": "value",
+                            "spec": [
+                                {
+                                    "name": "key",
+                                    "type": "text",
+                                    "label": "Key",
+                                    "required": true
+                                },
+                                {
+                                    "name": "value",
+                                    "type": "text",
+                                    "label": "Value"
+                                }
+                            ],
+                            "type": "collection",
+                            "label": "Email header"
+                        },
+                        "type": "array",
+                        "label": "Additional email headers"
+                    },
+                    {
+                        "name": "content",
+                        "type": "text",
+                        "label": "Content"
+                    }
+                ]
+            }
+        },
+        {
+            "id": 3,
+            "module": "airtable:ActionUpdateRecords",
+            "version": 3,
+            "parameters": {
+                "__IMTCONN__": 11116092
+            },
+            "mapper": {
+                "id": "{{1.id}}",
+                "base": "apphIbFEW7U88c6LP",
+                "table": "tblYqfueWWFQYknpn",
+                "record": {
+                    "fld6NYV1rjVooRI7d": "Enviado"
+                },
+                "typecast": false,
+                "useColumnId": false
+            },
+            "metadata": {
+                "designer": {
+                    "x": 600,
+                    "y": 0
+                },
+                "setupValidation": {
+                    "result": {
+                        "valid": true,
+                        "fields": []
+                    },
+                    "version": 1,
+                    "configuration": "53d383b6a696cdb2"
+                },
+                "restore": {
+                    "expect": {
+                        "base": {
+                            "label": "Autopartes - Gestión de Pedidos"
+                        },
+                        "table": {
+                            "label": "Pedidos"
+                        },
+                        "record": {
+                            "nested": {
+                                "fld3UEYy6vJprHNs7": {
+                                    "mode": "chose"
+                                },
+                                "fld6NYV1rjVooRI7d": {
+                                    "mode": "edit"
+                                },
+                                "fldbfnQzCGWwNrGMx": {
+                                    "mode": "edit"
+                                }
+                            }
+                        },
+                        "typecast": {
+                            "mode": "chose"
+                        },
+                        "useColumnId": {
+                            "mode": "chose"
+                        }
+                    },
+                    "parameters": {
+                        "__IMTCONN__": {
+                            "data": {
+                                "scoped": "true",
+                                "connection": "airtable3"
+                            },
+                            "label": "Florencia's Airtable OAuth connection (User ID: usrk6RB0Xy17dwKHh)"
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "__IMTCONN__",
+                        "type": "account:airtable3,airtable2",
+                        "label": "Connection",
+                        "required": true
+                    }
+                ],
+                "expect": [
+                    {
+                        "name": "base",
+                        "type": "select",
+                        "label": "Base",
+                        "required": true
+                    },
+                    {
+                        "name": "typecast",
+                        "type": "boolean",
+                        "label": "Smart links",
+                        "required": true
+                    },
+                    {
+                        "name": "useColumnId",
+                        "type": "boolean",
+                        "label": "Use column ID",
+                        "required": true
+                    },
+                    {
+                        "name": "table",
+                        "type": "select",
+                        "label": "Table",
+                        "required": true
+                    },
+                    {
+                        "name": "id",
+                        "type": "text",
+                        "label": "Record ID",
+                        "required": true
+                    },
+                    {
+                        "name": "record",
+                        "spec": [
+                            {
+                                "name": "fldXDAOze9mSNp02J",
+                                "type": "text",
+                                "label": "ID pedido"
+                            },
+                            {
+                                "name": "fld3UEYy6vJprHNs7",
+                                "spec": {
+                                    "name": "value",
+                                    "type": "text",
+                                    "label": "Record ID"
+                                },
+                                "type": "array",
+                                "label": "Cliente"
+                            },
+                            {
+                                "name": "fldl58N75Yrc8OnOf",
+                                "type": "text",
+                                "label": "Contenido del pedido"
+                            },
+                            {
+                                "mode": "edit",
+                                "name": "fld6NYV1rjVooRI7d",
+                                "type": "select",
+                                "label": "Estado"
+                            },
+                            {
+                                "name": "fldT7IrQBUTZN1Bwg",
+                                "type": "text",
+                                "label": "Resultado IA"
+                            },
+                            {
+                                "name": "flddz4vqOAlAb1Dtv",
+                                "type": "text",
+                                "label": "Registro de error"
+                            },
+                            {
+                                "mode": "edit",
+                                "name": "fldbfnQzCGWwNrGMx",
+                                "type": "select",
+                                "label": "Prioridad"
+                            }
+                        ],
+                        "type": "collection",
+                        "label": "Record"
+                    }
+                ],
+                "interface": [
+                    {
+                        "name": "id",
+                        "type": "text",
+                        "label": "ID"
+                    },
+                    {
+                        "name": "createdTime",
+                        "type": "date",
+                        "label": "Created time"
+                    },
+                    {
+                        "name": "ID pedido",
+                        "type": "text",
+                        "label": "ID pedido"
+                    },
+                    {
+                        "name": "Cliente",
+                        "spec": {
+                            "type": "text",
+                            "label": "Record ID"
+                        },
+                        "type": "array",
+                        "label": "Cliente"
+                    },
+                    {
+                        "name": "Nombre del cliente (from Cliente)",
+                        "type": "array",
+                        "label": "Nombre del cliente (from Cliente)"
+                    },
+                    {
+                        "name": "Email (from Cliente)",
+                        "type": "array",
+                        "label": "Email (from Cliente)"
+                    },
+                    {
+                        "name": "Contenido del pedido",
+                        "type": "text",
+                        "label": "Contenido del pedido",
+                        "multiline": true
+                    },
+                    {
+                        "name": "Estado",
+                        "type": "text",
+                        "label": "Estado"
+                    },
+                    {
+                        "name": "Resultado IA",
+                        "type": "text",
+                        "label": "Resultado IA",
+                        "multiline": true
+                    },
+                    {
+                        "name": "Registro de error",
+                        "type": "text",
+                        "label": "Registro de error",
+                        "multiline": true
+                    },
+                    {
+                        "name": "Fecha de ingreso",
+                        "type": "date",
+                        "label": "Fecha de ingreso"
+                    },
+                    {
+                        "name": "Prioridad",
+                        "type": "text",
+                        "label": "Prioridad"
+                    }
+                ]
+            }
+        }
+    ],
+    "metadata": {
+        "instant": false,
+        "version": 1,
+        "scenario": {
+            "roundtrips": 1,
+            "maxErrors": 3,
+            "autoCommit": true,
+            "autoCommitTriggerLast": true,
+            "sequential": false,
+            "slots": null,
+            "confidential": false,
+            "dataloss": false,
+            "dlq": false,
+            "freshVariables": false
+        },
+        "designer": {
+            "orphans": []
+        },
+        "zone": "us2.make.com",
+        "notes": []
+    }
+}
